@@ -2,11 +2,12 @@ package com.mylogin.loginpage.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mylogin.loginpage.dto.LoginRequestDTO;
+import com.mylogin.loginpage.dto.LoginResponseDTO;
 import com.mylogin.loginpage.dto.RegisterRequestDTO;
 import com.mylogin.loginpage.dto.RegisterResponseDTO;
 import com.mylogin.loginpage.service.UserService;
@@ -29,6 +30,12 @@ public class UserController {
         RegisterResponseDTO response = userService.register(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+@PostMapping("/login")
+public ResponseEntity<LoginResponseDTO> loginUser(@Valid @RequestBody LoginRequestDTO request) {
+    LoginResponseDTO response = userService.loginUser(request);
+    return ResponseEntity.ok(response);
+}
     
     
 }
