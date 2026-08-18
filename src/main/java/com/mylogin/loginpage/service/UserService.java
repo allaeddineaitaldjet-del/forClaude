@@ -1,8 +1,15 @@
 package com.mylogin.loginpage.service;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import com.mylogin.loginpage.dto.LoginRequestDTO;
+import com.mylogin.loginpage.dto.LoginResponseDTO;
 import com.mylogin.loginpage.dto.RegisterRequestDTO;
 import com.mylogin.loginpage.dto.RegisterResponseDTO;
 import com.mylogin.loginpage.exception.EmailAlreadyExistException;
@@ -11,14 +18,18 @@ import com.mylogin.loginpage.exception.UsernameAlreadyExistsException;
 import com.mylogin.loginpage.model.User;
 import com.mylogin.loginpage.repository.UserRepository;
 
+import jakarta.validation.Valid;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
     }
     public RegisterResponseDTO register(RegisterRequestDTO request) {
        
@@ -45,4 +56,14 @@ public class UserService {
 
         return new RegisterResponseDTO(user.getEmail(), user.getUsername());
     }
+
+    
+    public LoginResponseDTO loginUser(@Valid @RequestBody LoginRequestDTO request) {
+        Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(request.email(), request.password())
+        );
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+    return new LoginResponseDTO ("Login successful Welcome " );
+    }
+    
 }

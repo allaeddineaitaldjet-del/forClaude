@@ -3,10 +3,11 @@ package com.mylogin.loginpage.security;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.mylogin.loginpage.model.User;
 import com.mylogin.loginpage.repository.UserRepository;
-
+@Service
 public class CustomUserServiceDetails implements UserDetailsService {
     private final UserRepository userRepository;
 

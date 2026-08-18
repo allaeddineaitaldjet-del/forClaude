@@ -1,8 +1,10 @@
 package com.mylogin.loginpage.security;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.mylogin.loginpage.model.User;
@@ -15,7 +17,7 @@ public class CustomUserDetails implements UserDetails{
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
     @Override
     public String getPassword() {
