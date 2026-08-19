@@ -1,0 +1,121 @@
+/**
+ * LoginPage Styles
+ * Provides responsive layout and card container styling
+ * Color palette: Blues and neutrals for a professional look
+ */
+
+:root {
+  /* Color palette - professional blues and neutrals */
+  --color-primary: #2563eb; /* Primary blue for buttons and accents */
+  --color-primary-hover: #1d4ed8; /* Darker blue for hover states */
+  --color-background: #f9fafb; /* Light neutral background */
+  --color-card: #ffffff; /* Pure white for card */
+  --color-text-primary: #1f2937; /* Dark gray for main text */
+  --color-text-secondary: #6b7280; /* Medium gray for secondary text */
+  --color-border: #e5e7eb; /* Light gray for borders */
+  --color-error: #dc2626; /* Red for errors */
+  --color-success: #16a34a; /* Green for success */
+  --color-input-bg: #f3f4f6; /* Light gray for input backgrounds */
+
+  /* Shadows for depth */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+  /* Border radius for rounded corners */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Transitions for smooth interactions */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Main page container - split-screen layout */
+.pageContainer {
+  display: flex;
+  min-height: 100vh;
+  background: var(--color-background);
+}
+
+/* Left side - banner (60% width) - hidden on mobile */
+/* Banner styles are in LoginBanner.module.css */
+
+/* Right side - form container (40% width on desktop, 100% on mobile) */
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 40%;
+  padding: 32px;
+  background: var(--color-background);
+}
+
+/* Form card - contains the login form with shadow and styling */
+.cardWrapper {
+  width: 100%;
+  max-width: 420px;
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 48px;
+  animation: slideUp 0.4s ease-out;
+}
+
+/* Slide-up animation for card entrance */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tablet: Adjust spacing for smaller screens */
+@media (max-width: 1024px) {
+  .formContainer {
+    padding: 24px;
+  }
+
+  .cardWrapper {
+    padding: 40px;
+  }
+}
+
+/* Mobile: Stack to single column, form full-width */
+@media (max-width: 767px) {
+  .pageContainer {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .formContainer {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .cardWrapper {
+    padding: 32px;
+  }
+}
+
+/* Small mobile screens - further reduce padding */
+@media (max-width: 480px) {
+  .formContainer {
+    padding: 16px;
+  }
+
+  .cardWrapper {
+    padding: 24px;
+  }
+}
+
+/* Very small screens - minimal padding */
+@media (max-width: 360px) {
+  .cardWrapper {
+    padding: 20px;
+  }
+}
