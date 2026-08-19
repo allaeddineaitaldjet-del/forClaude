@@ -1,0 +1,154 @@
+/**
+ * InputField Styles
+ * Styles for input fields, labels, error messages, and password toggle
+ * Uses CSS variables defined in LoginPage.module.css
+ */
+
+/* Field container - groups label, input, and error message */
+.fieldContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Label styling - top-aligned above input */
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* Input wrapper - positions input and toggle button */
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Input field styling */
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--color-input-bg);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--color-text-primary);
+  transition: var(--transition);
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+/* Input placeholder styling */
+.input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+/* Input focus state - highlights when focused */
+.input:focus {
+  outline: none;
+  background-color: white;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Input hover state - subtle visual feedback */
+.input:hover:not(:focus) {
+  background-color: #f0f1f3;
+  border-color: var(--color-text-secondary);
+}
+
+/* Disabled input state */
+.input:disabled {
+  background-color: #f3f4f6;
+  color: var(--color-text-secondary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Input error state - red border when field has error */
+.inputError {
+  border-color: var(--color-error);
+  background-color: #fff5f5;
+}
+
+.inputError:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* Error text message */
+.errorText {
+  font-size: 13px;
+  color: var(--color-error);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Toggle button - show/hide password */
+.toggleButton {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  transition: var(--transition);
+  border-radius: var(--radius-sm);
+  line-height: 1;
+}
+
+/* Toggle button hover state */
+.toggleButton:hover:not(:disabled) {
+  color: var(--color-text-primary);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Toggle button focus state */
+.toggleButton:focus {
+  outline: none;
+  background-color: rgba(37, 99, 235, 0.1);
+  color: var(--color-primary);
+}
+
+/* Toggle button disabled state */
+.toggleButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Icon inside toggle button */
+.icon {
+  width: 20px;
+  height: 20px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Responsive design - mobile optimizations */
+@media (max-width: 640px) {
+  .label {
+    font-size: 13px;
+  }
+
+  .input {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 14px 16px;
+  }
+
+  .toggleButton {
+    right: 10px;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+}
