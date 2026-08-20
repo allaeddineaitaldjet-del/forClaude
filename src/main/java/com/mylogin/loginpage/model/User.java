@@ -1,6 +1,8 @@
 package com.mylogin.loginpage.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,6 +14,8 @@ public class User {
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ; 
+    @Enumerated(EnumType.STRING)
+    private Role role;
     private String email;
     private String username;
     private String password;
@@ -19,11 +23,19 @@ public class User {
     public User() {
     }
 
-    public User(String email, String username, String password) {
+    public User(String email, String username, String password, Role role) {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.role = role;
+    }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public String getEmail() {

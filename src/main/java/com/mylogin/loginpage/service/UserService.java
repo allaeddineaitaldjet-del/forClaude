@@ -15,6 +15,7 @@ import com.mylogin.loginpage.dto.RegisterResponseDTO;
 import com.mylogin.loginpage.exception.EmailAlreadyExistException;
 import com.mylogin.loginpage.exception.PasswordMissmatchException;
 import com.mylogin.loginpage.exception.UsernameAlreadyExistsException;
+import com.mylogin.loginpage.model.Role;
 import com.mylogin.loginpage.model.User;
 import com.mylogin.loginpage.repository.UserRepository;
 
@@ -52,6 +53,7 @@ public class UserService {
         user.setUsername(request.username());
         user.setEmail(request.email());
         user.setPassword(passwordEncoder.encode(request.password()));
+        user.setRole(Role.USER); // Set default role
         userRepository.save(user);
 
         return new RegisterResponseDTO(user.getEmail(), user.getUsername());
